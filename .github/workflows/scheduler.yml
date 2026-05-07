@@ -2,7 +2,7 @@ name: Version Stage Automation
 
 on:
   schedule:
-    - cron: '* * * * *'   # 每分钟执行一次
+    - cron: '*/5 * * * *'  # 每5分钟执行一次（GitHub Actions最小间隔）
   workflow_dispatch:       # 允许手动触发
 
 jobs:
@@ -27,6 +27,9 @@ jobs:
             --app-id "${{ secrets.LARK_APP_ID }}" \
             --app-secret-stdin \
             --brand feishu
+
+      - name: Verify lark-cli config
+        run: lark-cli config show
 
       - name: Run stage automation
         run: python version_stage_automation.py

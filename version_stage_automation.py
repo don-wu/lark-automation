@@ -30,6 +30,8 @@ def run_cli(args):
     result = subprocess.run(args, capture_output=True, text=True, encoding="utf-8", check=False)
     if result.returncode != 0:
         raise RuntimeError(result.stderr or result.stdout)
+    if not result.stdout.strip():
+        raise RuntimeError(f"lark-cli returned empty stdout. stderr={result.stderr!r} args={args}")
     payload = json.loads(result.stdout)
     # lark-cli base 命令返回 {"ok": true, "data": ...}
     # lark-cli task 命令返回 {"code": 0, "data": ...}
