@@ -29,10 +29,13 @@ TRACKING_TABLE_ID = "tblRWIWq1HDwknuq"
 def run_cli(args):
     result = subprocess.run(args, capture_output=True, text=True, encoding="utf-8", check=False)
     if result.returncode != 0:
-        raise RuntimeError(result.stderr or result.stdout)
+        raise RuntimeError(f"rc={result.returncode} stderr={result.stderr!r} stdout={result.stdout!r}")
     if not result.stdout.strip():
-        raise RuntimeError(f"lark-cli returned empty stdout. stderr={result.stderr!r} args={args}")
-    payload = json.loads(result.stdout)
+        raise RuntimeError(f"empty stdout. stderr={result.stderr!r} args={args}")
+    try:
+        payload = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        raise RuntimeError(f"invalid JSON stdout={result.stdout!r} stderr={result.stderr!r}")
     # lark-cli base 命令返回 {"ok": true, "data": ...}
     # lark-cli task 命令返回 {"code": 0, "data": ...}
     if "ok" in payload:
