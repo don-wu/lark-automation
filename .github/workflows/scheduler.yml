@@ -1,0 +1,35 @@
+name: Version Stage Automation
+
+on:
+  schedule:
+    - cron: '* * * * *'   # 每分钟执行一次
+  workflow_dispatch:       # 允许手动触发
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install lark-cli
+        run: npm install -g @larksuite/cli
+
+      - name: Configure lark-cli (bot identity)
+        env:
+          LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
+        run: |
+          echo "$LARK_APP_SECRET" | lark-cli config init \
+            --app-id "${{ secrets.LARK_APP_ID }}" \
+            --app-secret-stdin \
+            --brand feishu
+
+      - name: Run stage automation
+        run: python version_stage_automation.py
+
+      - name: Sync task status
+        run: python sync_task_status.py
