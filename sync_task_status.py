@@ -41,7 +41,6 @@ def record_upsert(table_id, record_id, values):
         "--table-id", table_id,
         "--record-id", record_id,
         "--json", json.dumps(values, ensure_ascii=False),
-        "--format", "json",
     ]
     return run_cli(args)
 
