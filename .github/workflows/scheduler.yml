@@ -31,13 +31,6 @@ jobs:
       - name: Verify lark-cli config
         run: lark-cli config show
 
-      - name: Debug lark-cli base access
-        run: |
-          echo "--- stdout ---"
-          lark-cli base "+record-list" --as bot --base-token Mg9ZbeiFrah1xdsH31XcuDRanTf --table-id tblzMARjnP3Ts7ZE --limit 1 || true
-          echo "--- stderr ---"
-          lark-cli base "+record-list" --as bot --base-token Mg9ZbeiFrah1xdsH31XcuDRanTf --table-id tblzMARjnP3Ts7ZE --limit 1 2>&1 >/dev/null || true
-
       - name: Run stage automation
         run: python version_stage_automation.py
 

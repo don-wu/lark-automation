@@ -30,6 +30,7 @@ def record_list(table_id):
         "--base-token", BASE_TOKEN,
         "--table-id", table_id,
         "--limit", "200",
+        "--format", "json",
     ])
 
 
@@ -40,6 +41,7 @@ def record_upsert(table_id, record_id, values):
         "--table-id", table_id,
         "--record-id", record_id,
         "--json", json.dumps(values, ensure_ascii=False),
+        "--format", "json",
     ]
     return run_cli(args)
 
@@ -48,6 +50,7 @@ def get_lark_task(task_guid):
     data = run_cli([
         LARK_CLI, "--as", "bot", "task", "tasks", "get",
         "--params", json.dumps({"task_guid": task_guid}),
+        "--format", "json",
     ])
     return data.get("task") or data
 

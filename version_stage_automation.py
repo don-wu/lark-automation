@@ -53,6 +53,7 @@ def record_list(table_id):
         "--base-token", BASE_TOKEN,
         "--table-id", table_id,
         "--limit", "200",
+        "--format", "json",
     ])
 
 
@@ -62,6 +63,7 @@ def record_upsert(table_id, record_id, values):
         "--base-token", BASE_TOKEN,
         "--table-id", table_id,
         "--json", json.dumps(values, ensure_ascii=False),
+        "--format", "json",
     ]
     if record_id:
         args.extend(["--record-id", record_id])
