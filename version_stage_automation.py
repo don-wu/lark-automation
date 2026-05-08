@@ -5,8 +5,8 @@ from datetime import datetime, date
 
 BASE_TOKEN = "Mg9ZbeiFrah1xdsH31XcuDRanTf"
 LARK_CLI = "lark-cli.cmd" if sys.platform == "win32" else "lark-cli"
-GROUP_WEBHOOK = "https://open.feishu.cn/open-apis/bot/v2/hook/2d2db6c2-52bf-4d79-a922-9590cbafdbe3"
-CHAT_ID = "oc_3353a9ce4d5020524053cdd8da6d45d3"
+GROUP_WEBHOOK = "https://open.feishu.cn/open-apis/bot/v2/hook/cd240e57-32d4-4e91-93e1-2920c78bcfb1"
+CHAT_ID = "oc_8db7fa4d87fbbd17057e9e74fdf33b24"
 
 VERSION_TABLES = [
     {
