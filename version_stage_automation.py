@@ -14,11 +14,11 @@ VERSION_TABLES = [
         "table_id": "tbl6IACUxSTdQFeK",
     },
     {
-        "version": "BP4+2",
+        "version": "BP4+2（6.25）",
         "table_id": "tblMkz8Jmk3dtXGW",
     },
     {
-        "version": "BP5",
+        "version": "BP5（7.30）",
         "table_id": "tblNSS9myeq0hk7C",
     },
 ]
